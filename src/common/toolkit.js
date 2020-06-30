@@ -1,0 +1,22 @@
+export function getUniqueArray(items) {
+  return [...new Set(items)];
+}
+
+// Info:Source: https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_debounce
+
+/*eslint-disable */
+export function debounce(func, wait, immediate) {
+  let timeout;
+  return function() {
+    let context = this, args = arguments;
+    let later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    let callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  };
+};
+/*eslint-enable */

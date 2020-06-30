@@ -1,0 +1,143 @@
+{
+  "data": [
+    {
+      "cardId": "CS2_041e",
+      "dbfId": "1853",
+      "name": "Ancestral Infusion",
+      "cardSet": "Basic",
+      "type": "Enchantment",
+      "text": "Taunt.",
+      "playerClass": "Shaman",
+      "locale": "enUS",
+      "mechanics": [
+        {
+          "name": "Taunt"
+        }
+      ]
+    },
+    {
+      "cardId": "CS2_038e",
+      "dbfId": "942",
+      "name": "Ancestral Spirit",
+      "cardSet": "Classic",
+      "type": "Enchantment",
+      "text": "<b>Deathrattle:</b> Resummon this minion.",
+      "playerClass": "Shaman",
+      "locale": "enUS"
+    },
+    {
+      "cardId": "CS2_041",
+      "dbfId": "149",
+      "name": "Ancestral Healing",
+      "cardSet": "Basic",
+      "type": "Spell",
+      "faction": "Neutral",
+      "rarity": "Free",
+      "cost": 0,
+      "text": "Restore a minion\\nto full Health and\\ngive it <b>Taunt</b>.",
+      "flavor": "I personally prefer some non-ancestral right-the-heck-now healing, but maybe that is just me.",
+      "artist": "Dan Scott",
+      "collectible": true,
+      "playerClass": "Shaman",
+      "howToGet": "Unlocked at Level 1.",
+      "howToGetGold": "Unlocked at Level 15.",
+      "img": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_041.png",
+      "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/CS2_041_premium.gif",
+      "locale": "enUS",
+      "mechanics": [
+        {
+          "name": "Taunt"
+        }
+      ]
+    },
+    {
+      "cardId": "AT_053",
+      "dbfId": "2514",
+      "name": "Ancestral Knowledge",
+      "cardSet": "The Grand Tournament",
+      "type": "Spell",
+      "rarity": "Common",
+      "cost": 2,
+      "text": "Draw 2 cards. <b>Overload:</b> (2)",
+      "flavor": "MOMMMMMYYYYYYYYY!!!",
+      "artist": "Zoltan & Gabor",
+      "collectible": true,
+      "playerClass": "Shaman",
+      "img": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/AT_053.png",
+      "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/AT_053_premium.gif",
+      "locale": "enUS",
+      "mechanics": [
+        {
+          "name": "Overload"
+        }
+      ]
+    },
+    {
+      "cardId": "CS2_038",
+      "dbfId": "404",
+      "name": "Ancestral Spirit",
+      "cardSet": "Classic",
+      "type": "Spell",
+      "faction": "Neutral",
+      "rarity": "Rare",
+      "cost": 2,
+      "text": "Give a minion \"<b>Deathrattle:</b> Resummon this minion.\"",
+      "flavor": "It was just a flesh wound.",
+      "artist": "Zoltan & Gabor",
+      "collectible": true,
+      "playerClass": "Shaman",
+      "img": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_038.png",
+      "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/CS2_038_premium.gif",
+      "locale": "enUS",
+      "mechanics": [
+        {
+          "name": "Deathrattle"
+        }
+      ]
+    },
+    {
+      "cardId": "GVG_029",
+      "dbfId": "1998",
+      "name": "Ancestor's Call",
+      "cardSet": "Goblins vs Gnomes",
+      "type": "Spell",
+      "rarity": "Epic",
+      "cost": 4,
+      "text": "Put a random minion from each player's hand into the battlefield.",
+      "flavor": "\"Hey! Ancestors!\" - Ancestor's call",
+      "artist": "Dan Scott",
+      "collectible": true,
+      "playerClass": "Shaman",
+      "img": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/GVG_029.png",
+      "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/GVG_029_premium.gif",
+      "locale": "enUS"
+    },
+    {
+      "cardId": "ULD_207",
+      "dbfId": "53408",
+      "name": "Ancestral Guardian",
+      "cardSet": "Saviors of Uldum",
+      "type": "Minion",
+      "rarity": "Common",
+      "cost": 4,
+      "attack": 4,
+      "health": 2,
+      "text": "<b>Lifesteal</b>\\n<b>Reborn</b>",
+      "flavor": "No one knows whose ancestor he is, but he's still upset that you never call.",
+      "artist": "MAR Studio",
+      "collectible": true,
+      "playerClass": "Paladin",
+      "img": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/ULD_207.png",
+      "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/ULD_207_premium.gif",
+      "locale": "enUS",
+      "mechanics": [
+        {
+          "name": "Lifesteal"
+        },
+        {
+          "name": "Reborn"
+        }
+      ]
+    }
+  ]
+}
