@@ -5,41 +5,36 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import MechanicsScreen from './screens/Mechanics/MechanicsScreen';
-import LoadingComponent from './common/LoadingComponent';
+
 import CardListScreen from './screens/Cards/CardListScreen';
 import SearchScreen from './screens/Search/SearchScreen';
 import {Icon} from 'native-base';
 
 const Stack = createStackNavigator();
 const App = () => {
-  const isLoading = false;
 
   return (
     <>
-      {isLoading ? (
-        <LoadingComponent />
-      ) : (
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen name="Mechanics" component={MechanicsScreen} />
-            <Stack.Screen
-              name="Cards"
-              component={CardListScreen}
-              options={({navigation}) => ({
-                headerRight: () => (
-                  <TouchableWithoutFeedback
-                    onPress={() => navigation.navigate('Search')}
-                    title="Info"
-                    color="#fff">
-                    <Icon name={'search'} style={styles.icon} />
-                  </TouchableWithoutFeedback>
-                ),
-              })}
-            />
-            <Stack.Screen name="Search" component={SearchScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      )}
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Mechanics" component={MechanicsScreen}/>
+          <Stack.Screen
+            name="Cards"
+            component={CardListScreen}
+            options={({navigation}) => ({
+              headerRight: () => (
+                <TouchableWithoutFeedback
+                  onPress={() => navigation.navigate('Search')}
+                  title="Info"
+                  color="#fff">
+                  <Icon name={'search'} style={styles.icon}/>
+                </TouchableWithoutFeedback>
+              ),
+            })}
+          />
+          <Stack.Screen name="Search" component={SearchScreen}/>
+        </Stack.Navigator>
+      </NavigationContainer>
     </>
   );
 };

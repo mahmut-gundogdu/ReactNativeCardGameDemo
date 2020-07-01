@@ -4,6 +4,7 @@ import {Input, Item, Icon, Text} from 'native-base';
 import {debounce} from '../../common/toolkit';
 import GameCard from '../components/GameCard';
 import {getCardsByName} from '../../services/card.service';
+import {LoadingComponent} from '../../common/LoadingComponent';
 
 export default class SearchComponent extends React.Component {
   state = {filter: '', cards: []};
@@ -15,42 +16,45 @@ export default class SearchComponent extends React.Component {
     this.search = debounce(this.search, 1000);
   }
 
-  onChangeText(text) {
+  async onChangeText(text) {
     this.setState({filter: text});
-    this.search();
+    await this.search();
   }
 
   async search() {
-    const cards = await getCardsByName(this.state.filter);
+    const filter = this.state.filter;
+    if (filter.length < 3) {
+      return 3;
+    }
+    const cards = await getCardsByName(filter);
     this.setState({cards});
   }
 
-
   render() {
     const {filter} = this.state;
-    const renderItem = ({item}) => (
-      <GameCard {...item}/>
-    );
+    const renderItem = ({item}) => <GameCard {...item} />;
     const keyExtractor = item => item.cardId;
     const cards = this.state.cards;
 
     return (
       <>
-        <Text>{filter}</Text>
-        <Item>
-          <Input
-            onChangeText={this.onChangeText}
-            value={filter}
-            placeholder={'Search'}
-          />
-          <Icon name="search" />
-        </Item>
+        <LoadingComponent>
+          <Text>{filter}</Text>
+          <Item>
+            <Input
+              onChangeText={this.onChangeText}
+              value={filter}
+              placeholder={'Search'}
+            />
+            <Icon name="search" />
+          </Item>
 
-        <FlatList
-          data={cards}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-        />
+          <FlatList
+            data={cards}
+            renderItem={renderItem}
+            keyExtractor={keyExtractor}
+          />
+        </LoadingComponent>
       </>
     );
   }

@@ -1,6 +1,5 @@
-import axios from 'axios';
 import {getUniqueArray} from '../common/toolkit';
-
+import {axiosInstance} from '../../axios.config';
 import {AsyncStorage} from 'react-native';
 
 export async function getCardAllCards() {
@@ -10,7 +9,7 @@ export async function getCardAllCards() {
   //   return JSON.parse(storedCards);
   // }
   const url = 'https://omgvamp-hearthstone-v1.p.rapidapi.com/cards';
-  const {data} = await axios.get(url);
+  const {data} = await axiosInstance.get(url);
   const cards = Object.keys(data).reduce((totalItems, key) => {
     return [...totalItems, ...data[key]];
   }, []);
@@ -36,6 +35,6 @@ export async function getCardsByName(name) {
     return;
   }
   const url = `https://omgvamp-hearthstone-v1.p.rapidapi.com/cards/search/${name}`;
-  const {data} = await axios.get(url);
+  const {data} = await axiosInstance.get(url);
   return data.filter(x => !!x.mechanics);
 }

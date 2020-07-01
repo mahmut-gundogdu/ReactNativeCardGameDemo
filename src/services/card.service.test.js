@@ -1,22 +1,26 @@
-import axios from 'axios';
+import {axiosInstance} from '../../axios.config';
+
 import {
   mockResponse,
-  mockResponseForGetAllMechanics, mockResponseForGetCardsByName,
+  mockResponseForGetAllMechanics,
+  mockResponseForGetCardsByName,
 } from './card.service.mock';
 import {
   getAllMechanics,
   getCardAllCards,
-  getCardsByMechanics, getCardsByName,
+  getCardsByMechanics,
+  getCardsByName,
 } from './card.service';
 
-jest.mock('axios');
+jest.mock('../../axios.config');
 
 describe('Card Service Test', () => {
   describe('getCardAllCards called then', () => {
     describe('When it has twe item. two have "mechanics"', () => {
       let result;
       beforeAll(async () => {
-        axios.get.mockResolvedValue(mockResponse);
+        axiosInstance.get.mockClear();
+        axiosInstance.get.mockResolvedValue(mockResponse);
         result = await getCardAllCards();
       });
 
@@ -29,11 +33,11 @@ describe('Card Service Test', () => {
       });
 
       it('should called axios.get', () => {
-        expect(axios).toBeCalled();
+        expect(axiosInstance.get).toBeCalled();
       });
 
       it('should called axios.get one times', () => {
-        expect(axios).toHaveBeenCalledTimes(1);
+        expect(axiosInstance.get).toHaveBeenCalledTimes(1);
       });
     });
   });
@@ -41,7 +45,8 @@ describe('Card Service Test', () => {
   describe('getAllMechanics Test', () => {
     let result;
     beforeAll(async () => {
-      axios.get.mockResolvedValue(mockResponseForGetAllMechanics);
+      axiosInstance.get.mockClear();
+      axiosInstance.get.mockResolvedValue(mockResponseForGetAllMechanics);
       result = await getAllMechanics();
     });
 
@@ -67,7 +72,7 @@ describe('Card Service Test', () => {
     const mechanic = 'Taunt';
     const expectedItemCount = 2;
     beforeAll(async () => {
-      axios.get.mockResolvedValue(mockResponse);
+      axiosInstance.get.mockResolvedValue(mockResponse);
       result = await getCardsByMechanics(mechanic);
     });
 
@@ -84,21 +89,20 @@ describe('Card Service Test', () => {
   describe('getCardsByName Test', () => {
     let result;
     const name = 'Ances';
-    const expectedItemCount = 5;//there is 7 item. 5 of has "merchanic"
+    const expectedItemCount = 5; //there is 7 item. 5 of has "merchanic"
     beforeAll(async () => {
-      axios.get.mockResolvedValue(mockResponseForGetCardsByName);
+      axiosInstance.get.mockClear();
+      axiosInstance.get.mockResolvedValue(mockResponseForGetCardsByName);
       result = await getCardsByName(name);
     });
 
     it('should called axios.get one times', () => {
-      expect(axios.get).toHaveBeenCalledTimes(1);
+      expect(axiosInstance.get).toHaveBeenCalledTimes(1);
     });
 
     it(`should have ${expectedItemCount} items`, () => {
       expect(result).toBeTruthy();
       expect(result.length).toBe(expectedItemCount);
     });
-
   });
-
 });

@@ -4,6 +4,7 @@ import {getCardsByMechanics} from '../../services/card.service';
 import {recordError} from '../../common/log';
 import {Card, CardItem} from 'native-base';
 import GameCard from '../components/GameCard';
+import {LoadingComponent} from '../../common/LoadingComponent';
 
 export default function CardListScreen({route}) {
   const {mechanic} = route.params;
@@ -20,18 +21,22 @@ export default function CardListScreen({route}) {
 
   return (
     <>
-      <Card>
-        <CardItem header bordered>
-          <Text>
-            Cards of '{mechanic}" ({cards.length})
-          </Text>
-        </CardItem>
-      </Card>
-      <FlatList
-        data={cards}
-        renderItem={renderItem}
-        keyExtractor={keyExtractor}
-      />
+      <LoadingComponent>
+        <Card>
+          <CardItem header bordered>
+            <Text>
+              Cards of '{mechanic}" ({cards.length})
+            </Text>
+          </CardItem>
+        </Card>
+
+        <FlatList
+          data={cards}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+        />
+
+      </LoadingComponent>
     </>
   );
 }
