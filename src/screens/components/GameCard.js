@@ -4,24 +4,63 @@ import {
   StyleSheet,
   Dimensions,
   TouchableWithoutFeedback,
+  View,
+  Animated,
 } from 'react-native';
 import {Card, CardItem, Text} from 'native-base';
 import useHttps from '../../common/useHttps';
 import GameCardInformation from './GameCardInformation';
-import CardFlip from 'react-native-card-flip';
 
-
-export default function (card) {
+export default function(card) {
   const {name, img} = card;
   const [isDetailVisible, setDetailVisibility] = useState(false);
 
   const toggle = () => {
-    setDetailVisibility(!isDetailVisible);
+    flipCard();
   };
 
   const image = img
     ? {uri: useHttps(img)}
     : require('../../assets/noImageFound.png');
+
+  const animatedValue = new Animated.Value(0);
+  let value = 0;
+  animatedValue.addListener(x => {
+    value = x.value;
+  });
+
+  const frontInterpolate = animatedValue.interpolate({
+    inputRange: [0, 180],
+    outputRange: ['0deg', '180deg'],
+  });
+  const backInterpolate = animatedValue.interpolate({
+    inputRange: [0, 180],
+    outputRange: ['180deg', '360deg'],
+  });
+
+  const frontAnimatedStyle = {
+    transform: [{rotateY: frontInterpolate}],
+  };
+
+  const backAnimatedStyle = {
+    transform: [{rotateY: backInterpolate}],
+  };
+
+  const flipCard = () => {
+    if (value >= 90) {
+      Animated.spring(animatedValue, {
+        toValue: 0,
+        friction: 8,
+        tension: 10,
+      }).start();
+    } else {
+      Animated.spring(animatedValue, {
+        toValue: 180,
+        friction: 8,
+        tension: 10,
+      }).start();
+    }
+  };
 
   return (
     <Card>
@@ -30,11 +69,14 @@ export default function (card) {
       </CardItem>
       <TouchableWithoutFeedback onPress={toggle}>
         <CardItem style={styles.imageContainer}>
-          {isDetailVisible ? (
-            <GameCardInformation card={card}/>
-          ) : (
-            <Image source={image} style={styles.image} resizeMode="contain"/>
-          )}
+          <Animated.View
+            style={[backAnimatedStyle, styles.flipCard, styles.flipCardBack]}>
+            <GameCardInformation card={card} />
+          </Animated.View>
+
+          <Animated.View style={[styles.flipCard, frontAnimatedStyle]}>
+            <Image source={image} style={styles.image} resizeMode="contain" />
+          </Animated.View>
         </CardItem>
       </TouchableWithoutFeedback>
     </Card>
@@ -54,8 +96,21 @@ const styles = StyleSheet.create({
     height: height,
   },
   imageContainer: {
+    flex: 1,
     width: width,
     height: height,
     alignItems: 'flex-start',
+  },
+
+  flipCard: {
+    width: width,
+    height: height,
+
+    backfaceVisibility: 'hidden',
+  },
+  flipCardBack: {
+
+    position: 'absolute',
+    top: 0,
   },
 });

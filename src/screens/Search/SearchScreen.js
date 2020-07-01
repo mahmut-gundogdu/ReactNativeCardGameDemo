@@ -39,7 +39,6 @@ export default class SearchComponent extends React.Component {
     return (
       <>
         <LoadingComponent>
-          <Text>{filter}</Text>
           <Item>
             <Input
               onChangeText={this.onChangeText}

@@ -1,9 +1,9 @@
 import {getUniqueArray} from '../common/toolkit';
 import {axiosInstance} from '../../axios.config';
-import {AsyncStorage} from 'react-native';
+//import {AsyncStorage} from 'react-native';
 
 export async function getCardAllCards() {
-  // //TO DO DELETE ASYNCStorage. it is only for fast development.
+  //TO DO DELETE ASYNCStorage. it is only for fast development.
   // const storedCards = await AsyncStorage.getItem('cards');
   // if (storedCards) {
   //   return JSON.parse(storedCards);

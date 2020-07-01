@@ -17,7 +17,7 @@ export default function CardListScreen({route}) {
   }, [mechanic]);
 
   const keyExtractor = item => item.cardId;
-  const renderItem = ({item}) => <GameCard {...item} />;
+  const renderItem = ({item, index}) => <GameCard {...item} index={index} />;
 
   return (
     <>
@@ -35,7 +35,6 @@ export default function CardListScreen({route}) {
           renderItem={renderItem}
           keyExtractor={keyExtractor}
         />
-
       </LoadingComponent>
     </>
   );

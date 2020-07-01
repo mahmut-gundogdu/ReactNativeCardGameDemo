@@ -20,7 +20,7 @@ export default function MechanicsScreen({navigation}) {
   };
 
   const renderItem = ({item}) => (
-    <MechanicItem name={item} click={handleClick}/>
+    <MechanicItem name={item} click={handleClick} />
   );
   const keyExtractor = item => item;
 
